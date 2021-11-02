@@ -10,16 +10,51 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ cons; }
+/* harmony export */   "default": function() { return /* binding */ showImg; }
 /* harmony export */ });
+/* harmony import */ var _services_getResourse_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../services/getResourse.js */ "./src/js/services/getResourse.js");
 
 
-function cons() {
-  console.log('done');
-  console.log('true');
-  console.log('false');
-  console.log('!false');
+
+async function showImg() {
+  let res = await (0,_services_getResourse_js__WEBPACK_IMPORTED_MODULE_0__.getResource)('db.json');
+  const setSize = document.querySelector('.promo__size'),
+        price = document.querySelector('.promo__price span');
+  setSize.addEventListener('click', event => {
+    switch (true) {
+      case event.target.getAttribute('data-size') === 'S':
+        price.innerHTML = `${res.Hero.size_price.S.price}`;
+        break;
+
+      case event.target.getAttribute('data-size') === 'M':
+        price.innerHTML = `${res.Hero.size_price.M.price}`;
+        break;
+
+      case event.target.getAttribute('data-size') === 'L':
+        price.innerHTML = `${res.Hero.size_price.L.price}`;
+        break;
+    }
+  });
 }
+
+/***/ }),
+
+/***/ "./src/js/services/getResourse.js":
+/*!****************************************!*\
+  !*** ./src/js/services/getResourse.js ***!
+  \****************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getResource": function() { return /* binding */ getResource; }
+/* harmony export */ });
+const getResource = async url => {
+  let res = await fetch(url);
+  return await res.json(res => res);
+};
+
+
 
 /***/ })
 
@@ -90,7 +125,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   (0,_modules_func_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
 });
 }();

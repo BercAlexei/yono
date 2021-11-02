@@ -1,8 +1,8 @@
 'use strict'
 
-import cons from './modules/func.js'
+import showImg from './modules/func.js'
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    cons();
+    showImg();
 })

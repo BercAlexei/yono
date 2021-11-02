@@ -112,6 +112,7 @@ task(
 			'icons',
 			'mailer',
 			'html',
+			'JSON',
 			'images'
 		)
 	)

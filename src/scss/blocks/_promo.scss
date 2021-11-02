@@ -4,9 +4,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 117px 58px 52px 61px;
+
     &__descr {
         width: 50%;
     }
+
     &__text {
         font-style: normal;
         font-weight: normal;
@@ -15,6 +17,7 @@
         color: #000000;
         margin-top: 36px;
     }
+
     &__price {
         font-style: normal;
         font-weight: bold;
@@ -24,6 +27,7 @@
         color: #000000;
         margin-top: 27px;
     }
+
     &__size {
         font-style: normal;
         font-weight: bold;
@@ -32,27 +36,39 @@
         letter-spacing: 0.125em;
         color: rgba($color: #000000, $alpha: .5);
         margin-top: 10px;
-        span {
+
+        label {
+            color: rgba($color: #000000, $alpha: .5);
             position: relative;
             cursor: pointer;
         }
-        span.active {
-            color: rgba($color: #000000, $alpha: 1);
-            &:before {
-                content: '';
-                display: block;
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: 1px;
-                background: #000000;
+
+        input {
+            
+            appearance: none;
+            display: none;
+
+            &:checked+label {
+                color: rgba($color: #000000, $alpha: 1);
+                &:before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 1px;
+                    background: #000000;
+                }
             }
+
         }
     }
+
     &__gallery {
         margin-top: 21px;
         display: flex;
+
         &-photo {
             display: flex;
             justify-content: center;
@@ -62,15 +78,18 @@
             width: 65px;
             cursor: pointer;
             padding: 7px;
+
             &_active {
-                border: 1px solid #323537; 
+                border: 1px solid #323537;
             }
+
             img {
                 max-height: 100%;
-                
+
             }
         }
     }
+
     &__img {
         height: 100%;
         width: 50%;
@@ -78,6 +97,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
+
         img {
             max-width: 100%;
         }
