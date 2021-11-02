@@ -1,0 +1,9 @@
+.main {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 155px 1fr; 
+    grid-template-rows: 1fr 168px;
+    grid-template-areas: 
+    "sidebar promo"
+    "sidebar downbar";
+}

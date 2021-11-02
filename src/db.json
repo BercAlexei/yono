@@ -1,0 +1,19 @@
+{
+  "Hero": {
+    "size_price":{
+      "S": {
+        "price": 350,
+        "size": "S"
+      },
+      "M": {
+        "price": 400,
+        "size": "M"
+      },
+      "L":{
+        "price": 500,
+        "size": "L"
+      }
+    },
+    "img_src": ["Hero", "HeroBack", "Hero45deg"]
+  }
+}

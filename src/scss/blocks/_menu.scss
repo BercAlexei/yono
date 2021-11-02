@@ -1,0 +1,23 @@
+.menu {
+    padding: 0;
+    writing-mode: vertical-lr;
+    &__link {
+        display: inline-block;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        color: #424447;
+        text-decoration: none;
+        margin-bottom: 60px;
+        transform: rotate(180deg);
+        &:hover {
+            color: #424447;
+        } 
+        &:last-child {
+            margin-bottom: 0;
+        }
+        &_active {
+            font-weight: 550;
+        }
+    }
+}

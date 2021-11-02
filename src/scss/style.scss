@@ -1,0 +1,29 @@
+@import 'base/libs';
+@import 'base/fonts';
+@import 'base/vars';
+@import 'base/animation';
+
+* {
+    font-family: 'HelveticaNeue', sans-serif;
+}
+body {
+    background: url('../img/bg.png') center center / cover no-repeat;
+}
+
+.container {
+    height: 100%;
+    position: relative;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+@import 'blocks/main';
+@import 'blocks/promo';
+@import 'blocks/title';
+@import 'blocks/sidebar';
+@import 'blocks/downbar';
+@import 'blocks/menu';
+@import 'blocks/social';
+@import 'blocks/btn';
+
+@import 'blocks/media';

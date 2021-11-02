@@ -1,0 +1,19 @@
+.sidebar {
+    padding: 40px 0 31px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 155px;
+    height: 100%;
+    border-right: solid 1px #8A898C;
+    grid-area: sidebar;
+}
+
+.logo {
+    width: 63px;
+    height: 64px;
+    img {
+        width: 100%;
+    }
+}

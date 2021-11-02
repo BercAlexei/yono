@@ -1,0 +1,43 @@
+.downbar {
+    border-top: solid 1px #8A898C;
+    grid-area: downbar;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 27px 74px 31px 31px;
+    &__text {
+        font-family: 'Exo';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 35px;
+        line-height: 120%;
+        color: #000000;
+    }
+    &__clothes {
+        display: flex;
+        align-items: center;
+        &-tab {
+            width: 98px;
+            height: 110px;
+            background: #fff;
+            margin-right: 31px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 11px;
+            cursor: pointer;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+        &-text {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 10px;
+            line-height: 13px;
+            text-align: center;
+            color: #000;
+        }
+    }
+}
