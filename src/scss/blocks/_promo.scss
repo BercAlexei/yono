@@ -36,7 +36,19 @@
         letter-spacing: 0.125em;
         color: rgba($color: #000000, $alpha: .5);
         margin-top: 10px;
-
+        div {
+            margin-right: 3px;
+            &:after {
+                content: '/';
+                padding: 0;
+            }
+            &:last-child {
+                &:after {
+                   content: ''; 
+                }
+                
+            }
+        }
         label {
             color: rgba($color: #000000, $alpha: .5);
             position: relative;

@@ -1,28 +1,22 @@
 'use strict'
 import { getResource } from './../services/getResourse.js'
+import { CreateSize } from '../services/createSize.js';
 
 export default async function showImg() {
+    const setSize = document.querySelector('.promo__size'),
+        price = document.querySelector('.promo__price span');
 
     let res = await getResource('db.json');
+    let size = '';
 
-    const setSize = document.querySelector('.promo__size'),
-          price = document.querySelector('.promo__price span');
+    res.Hero.forEach(({ price, size } = element) => {
+        new CreateSize(size).render();
+        console.log(price)
+    });
 
     setSize.addEventListener('click', (event) => {
-
-        switch(true) {
-            case (event.target.getAttribute('data-size') === 'S') : 
-                price.innerHTML = `${res.Hero.size_price.S.price}`
-                break;
-            case (event.target.getAttribute('data-size') === 'M') : 
-                price.innerHTML = `${res.Hero.size_price.M.price}`
-                break;
-            case (event.target.getAttribute('data-size') === 'L') : 
-                price.innerHTML = `${res.Hero.size_price.L.price}`
-                break;
+        if (event.target.getAttribute('data-size') !== '' && event.target.tagName == 'LABEL') {
+            size = event.target.getAttribute('data-size');
         }
     })
-
-
-
 }

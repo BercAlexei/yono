@@ -13,29 +13,61 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": function() { return /* binding */ showImg; }
 /* harmony export */ });
 /* harmony import */ var _services_getResourse_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../services/getResourse.js */ "./src/js/services/getResourse.js");
+/* harmony import */ var _services_createSize_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/createSize.js */ "./src/js/services/createSize.js");
+
 
 
 
 async function showImg() {
-  let res = await (0,_services_getResourse_js__WEBPACK_IMPORTED_MODULE_0__.getResource)('db.json');
   const setSize = document.querySelector('.promo__size'),
         price = document.querySelector('.promo__price span');
+  let res = await (0,_services_getResourse_js__WEBPACK_IMPORTED_MODULE_0__.getResource)('db.json');
+  let size = '';
+  res.Hero.forEach(({
+    price,
+    size
+  } = element) => {
+    new _services_createSize_js__WEBPACK_IMPORTED_MODULE_1__.CreateSize(size).render();
+    console.log(price);
+  });
   setSize.addEventListener('click', event => {
-    switch (true) {
-      case event.target.getAttribute('data-size') === 'S':
-        price.innerHTML = `${res.Hero.size_price.S.price}`;
-        break;
-
-      case event.target.getAttribute('data-size') === 'M':
-        price.innerHTML = `${res.Hero.size_price.M.price}`;
-        break;
-
-      case event.target.getAttribute('data-size') === 'L':
-        price.innerHTML = `${res.Hero.size_price.L.price}`;
-        break;
+    if (event.target.getAttribute('data-size') !== '' && event.target.tagName == 'LABEL') {
+      size = event.target.getAttribute('data-size');
     }
   });
 }
+
+/***/ }),
+
+/***/ "./src/js/services/createSize.js":
+/*!***************************************!*\
+  !*** ./src/js/services/createSize.js ***!
+  \***************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CreateSize": function() { return /* binding */ CreateSize; }
+/* harmony export */ });
+class CreateSize {
+  constructor(size) {
+    this.size = size;
+  }
+
+  render() {
+    const setSize = document.querySelector('.promo__size');
+    let sizeLabel = document.createElement('div');
+    sizeLabel.style.display = 'inline-block';
+    sizeLabel.innerHTML = `
+            <input name='size' id=${this.size} type="radio">
+            <label data-size=${this.size} for=${this.size}>${this.size}</label>
+        `;
+    setSize.append(sizeLabel);
+  }
+
+}
+
+
 
 /***/ }),
 
