@@ -1,15 +1,24 @@
 'use strict';
 import { getResource } from './../services/getResourse.js';
 import { CreateSize } from './../services/createSize.js';
+import { CreateImgs } from './../services/createImgs.js';
 
 export default async function changeSize() {
     const setSize = document.querySelector('.promo__size'),
-        priceSpan = document.querySelector('.promo__price span');
+        priceSpan = document.querySelector('.promo__price span'),
+        setimg = document.querySelector('.promo__gallery');
+    let mainImg = document.querySelector('.promo__img');
 
-    let hero = await getResource('db.json').then(res => res.Hero);
 
-    hero.forEach(({ size }) => {
+
+    let db = await getResource('db.json');
+
+    db.Hero.forEach(({ size }) => {
         new CreateSize(size).render();
+    });
+
+    db.imgSrc.forEach(item => {
+        new CreateImgs(item).render();
     });
 
     const sizeChecked = setSize.querySelectorAll('input')[0];
@@ -18,7 +27,7 @@ export default async function changeSize() {
     sizeChecked.checked = true;
 
     function filterArrHero() {
-        hero.filter(({ price, size }) => {
+        db.Hero.filter(({ price, size }) => {
             if (size === sizeLabel) {
                 priceSpan.innerHTML = `${price}`;
             }
@@ -26,6 +35,23 @@ export default async function changeSize() {
     }
 
     filterArrHero();
+
+    const imgChecked = setimg.querySelectorAll('input')[0];
+    imgChecked.checked = true;
+
+    function selectimg(src) {
+        mainImg.innerHTML = `
+            <img src="img/clothes/${src}.png" alt="hero">
+        `;
+    }
+
+    selectimg(imgChecked.getAttribute('id'));
+    
+    setimg.addEventListener('click', event => {
+        if (event.target.getAttribute('data-src') !== '' && (event.target.tagName == 'IMG' || event.target.tagName == 'LABEL')) {
+            selectimg(event.target.getAttribute('data-src'));
+        }
+    });
 
     setSize.addEventListener('click', (event) => {
         if (event.target.getAttribute('data-size') !== '' && event.target.tagName == 'LABEL') {

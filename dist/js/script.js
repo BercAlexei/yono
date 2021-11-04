@@ -14,25 +14,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _services_getResourse_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../services/getResourse.js */ "./src/js/services/getResourse.js");
 /* harmony import */ var _services_createSize_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../services/createSize.js */ "./src/js/services/createSize.js");
+/* harmony import */ var _services_createImgs_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../services/createImgs.js */ "./src/js/services/createImgs.js");
+
 
 
 
 
 async function changeSize() {
   const setSize = document.querySelector('.promo__size'),
-        priceSpan = document.querySelector('.promo__price span');
-  let hero = await (0,_services_getResourse_js__WEBPACK_IMPORTED_MODULE_0__.getResource)('db.json').then(res => res.Hero);
-  hero.forEach(({
+        priceSpan = document.querySelector('.promo__price span'),
+        setimg = document.querySelector('.promo__gallery');
+  let mainImg = document.querySelector('.promo__img');
+  let db = await (0,_services_getResourse_js__WEBPACK_IMPORTED_MODULE_0__.getResource)('db.json');
+  db.Hero.forEach(({
     size
   }) => {
     new _services_createSize_js__WEBPACK_IMPORTED_MODULE_1__.CreateSize(size).render();
+  });
+  db.imgSrc.forEach(item => {
+    new _services_createImgs_js__WEBPACK_IMPORTED_MODULE_2__.CreateImgs(item).render();
   });
   const sizeChecked = setSize.querySelectorAll('input')[0];
   let sizeLabel = `${sizeChecked.getAttribute('id')}`;
   sizeChecked.checked = true;
 
   function filterArrHero() {
-    hero.filter(({
+    db.Hero.filter(({
       price,
       size
     }) => {
@@ -43,6 +50,21 @@ async function changeSize() {
   }
 
   filterArrHero();
+  const imgChecked = setimg.querySelectorAll('input')[0];
+  imgChecked.checked = true;
+
+  function selectimg(src) {
+    mainImg.innerHTML = `
+            <img src="img/clothes/${src}.png" alt="hero">
+        `;
+  }
+
+  selectimg(imgChecked.getAttribute('id'));
+  setimg.addEventListener('click', event => {
+    if (event.target.getAttribute('data-src') !== '' && (event.target.tagName == 'IMG' || event.target.tagName == 'LABEL')) {
+      selectimg(event.target.getAttribute('data-src'));
+    }
+  });
   setSize.addEventListener('click', event => {
     if (event.target.getAttribute('data-size') !== '' && event.target.tagName == 'LABEL') {
       sizeLabel = event.target.getAttribute('data-size');
@@ -50,6 +72,40 @@ async function changeSize() {
     }
   });
 }
+
+/***/ }),
+
+/***/ "./src/js/services/createImgs.js":
+/*!***************************************!*\
+  !*** ./src/js/services/createImgs.js ***!
+  \***************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CreateImgs": function() { return /* binding */ CreateImgs; }
+/* harmony export */ });
+class CreateImgs {
+  constructor(src) {
+    this.src = src;
+  }
+
+  render() {
+    const setimg = document.querySelector('.promo__gallery');
+    let imgLabel = document.createElement('div');
+    imgLabel.classList.add('promo__gallery-photo');
+    imgLabel.innerHTML = `
+            <input name='img' id=${this.src} type="radio">
+            <label for=${this.src} data-src=${this.src}>
+                <img src="img/clothes/${this.src}.png" alt=${this.src} data-src=${this.src}>
+            </label>
+        `;
+    setimg.append(imgLabel);
+  }
+
+}
+
+
 
 /***/ }),
 
@@ -97,7 +153,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const getResource = async url => {
   let res = await fetch(url);
-  return await res.json(res => res);
+  return await res.json();
 };
 
 

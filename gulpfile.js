@@ -53,6 +53,7 @@ task('watch', function () {
 	watch('src/img/**/*').on('add', parallel('images'))
 	watch('src/icons/**/*').on('add', parallel('icons'))
 	watch('src/fonts/**/*').on('add', parallel('fonts'))
+	watch('src/*.json').on('add', parallel('JSON'))
 })
 
 task('html', function () {

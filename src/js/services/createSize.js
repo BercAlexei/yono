@@ -1,5 +1,5 @@
 class CreateSize {
-    constructor( size) {
+    constructor(size) {
         this.size = size;
     }
 

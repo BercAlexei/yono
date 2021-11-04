@@ -36,19 +36,23 @@
         letter-spacing: 0.125em;
         color: rgba($color: #000000, $alpha: .5);
         margin-top: 10px;
+
         div {
             margin-right: 3px;
+
             &:after {
                 content: '/';
                 padding: 0;
             }
+
             &:last-child {
                 &:after {
-                   content: ''; 
+                    content: '';
                 }
-                
+
             }
         }
+
         label {
             color: rgba($color: #000000, $alpha: .5);
             position: relative;
@@ -56,12 +60,13 @@
         }
 
         input {
-            
+
             appearance: none;
             display: none;
 
             &:checked+label {
                 color: rgba($color: #000000, $alpha: 1);
+
                 &:before {
                     content: '';
                     display: block;
@@ -82,23 +87,33 @@
         display: flex;
 
         &-photo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             margin-right: 18px;
             height: 65px;
             width: 65px;
-            cursor: pointer;
-            padding: 7px;
 
-            &_active {
-                border: 1px solid #323537;
+            input {
+                appearance: none;
+                display: none;
+
+                &:checked+label {
+                    border: 1px solid #323537;
+                }
             }
 
-            img {
-                max-height: 100%;
+            label {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                height: 100%;
+                width: 100%;
+                padding: 6px;
 
+                img {
+                    max-height: 100%;
+                }
             }
+
         }
     }
 

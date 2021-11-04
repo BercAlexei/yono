@@ -21,6 +21,6 @@
       "size": "XL"
     }
   ],
-  "img_src": ["Hero", "HeroBack", "Hero45deg"]
+  "imgSrc": ["Hero", "HeroBack", "Hero45deg"]
   
 }
