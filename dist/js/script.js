@@ -10,29 +10,43 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ showImg; }
+/* harmony export */   "default": function() { return /* binding */ changeSize; }
 /* harmony export */ });
 /* harmony import */ var _services_getResourse_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../services/getResourse.js */ "./src/js/services/getResourse.js");
-/* harmony import */ var _services_createSize_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/createSize.js */ "./src/js/services/createSize.js");
+/* harmony import */ var _services_createSize_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../services/createSize.js */ "./src/js/services/createSize.js");
 
 
 
 
-async function showImg() {
+async function changeSize() {
   const setSize = document.querySelector('.promo__size'),
-        price = document.querySelector('.promo__price span');
-  let res = await (0,_services_getResourse_js__WEBPACK_IMPORTED_MODULE_0__.getResource)('db.json');
-  let size = '';
-  res.Hero.forEach(({
-    price,
+        priceSpan = document.querySelector('.promo__price span');
+  let hero = await (0,_services_getResourse_js__WEBPACK_IMPORTED_MODULE_0__.getResource)('db.json').then(res => res.Hero);
+  hero.forEach(({
     size
-  } = element) => {
+  }) => {
     new _services_createSize_js__WEBPACK_IMPORTED_MODULE_1__.CreateSize(size).render();
-    console.log(price);
   });
+  const sizeChecked = setSize.querySelectorAll('input')[0];
+  let sizeLabel = `${sizeChecked.getAttribute('id')}`;
+  sizeChecked.checked = true;
+
+  function filterArrHero() {
+    hero.filter(({
+      price,
+      size
+    }) => {
+      if (size === sizeLabel) {
+        priceSpan.innerHTML = `${price}`;
+      }
+    });
+  }
+
+  filterArrHero();
   setSize.addEventListener('click', event => {
     if (event.target.getAttribute('data-size') !== '' && event.target.tagName == 'LABEL') {
-      size = event.target.getAttribute('data-size');
+      sizeLabel = event.target.getAttribute('data-size');
+      filterArrHero();
     }
   });
 }

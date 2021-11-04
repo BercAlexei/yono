@@ -12,7 +12,7 @@ class CreateSize {
         sizeLabel.innerHTML = `
             <input name='size' id=${this.size} type="radio">
             <label data-size=${this.size} for=${this.size}>${this.size}</label>
-        `
+        `;
         setSize.append(sizeLabel);
     }
 }

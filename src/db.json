@@ -1,6 +1,10 @@
 {
   "Hero": [
     {
+      "price": 300,
+      "size": "XS"
+    },
+    {
       "price": 350,
       "size": "S"
     },
