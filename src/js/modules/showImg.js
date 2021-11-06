@@ -1,15 +1,14 @@
 'use strict';
-import { getResource } from './../services/getResourse.js';
-import { CreateSize } from './../services/createSize.js';
-import { CreateImgs } from './../services/createImgs.js';
+import { getResource } from '../services/getResourse.js';
+import { CreateSize } from '../services/createSize.js';
+import { CreateImgs } from '../services/createImgs.js';
+import { tns } from 'tiny-slider';
 
 export default async function changeSize() {
     const setSize = document.querySelector('.promo__size'),
         priceSpan = document.querySelector('.promo__price span'),
         setimg = document.querySelector('.promo__gallery');
     let mainImg = document.querySelector('.promo__img');
-
-
 
     let db = await getResource('db.json');
 
@@ -60,4 +59,13 @@ export default async function changeSize() {
             filterArrHero();
         }
     });
+
+    tns({
+        container: '.slider',
+        items: 1,
+        slideBy: 'page',
+        autoplay: false,
+        nav: false,
+        center: true
+      });
 }
