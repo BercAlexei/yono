@@ -3694,7 +3694,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": function() { return /* binding */ modal; }
 /* harmony export */ });
 function modal() {
-  const mainImg = document.querySelector('.promo__img img'),
+  const mainImg = document.querySelector('.promo__img'),
         modal = document.querySelector('.modal');
   mainImg.addEventListener('click', () => {
     modal.style.display = 'block';
@@ -3782,6 +3782,8 @@ async function changeSize() {
   (0,tiny_slider__WEBPACK_IMPORTED_MODULE_3__.tns)({
     container: '.slider',
     items: 1,
+    prevButton: '.prev',
+    nextButton: '.next',
     slideBy: 'page',
     autoplay: false,
     nav: false,
@@ -3808,8 +3810,14 @@ class CreateImgs {
 
   render() {
     const setimg = document.querySelector('.promo__gallery');
+    const slider = document.querySelector('.slider');
     let imgLabel = document.createElement('div');
+    let imgModal = document.createElement('div');
     imgLabel.classList.add('promo__gallery-photo');
+    imgModal.classList.add('modal__img-wrapper');
+    imgModal.innerHTML = `
+        <img src="img/clothes/${this.src}.png" alt='Hero'>
+        `;
     imgLabel.innerHTML = `
             <input name='img' id=${this.src} type="radio">
             <label for=${this.src} data-src=${this.src}>
@@ -3817,6 +3825,7 @@ class CreateImgs {
             </label>
         `;
     setimg.append(imgLabel);
+    slider.append(imgModal);
   }
 
 }

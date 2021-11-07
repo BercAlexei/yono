@@ -63,6 +63,8 @@ export default async function changeSize() {
     tns({
         container: '.slider',
         items: 1,
+        prevButton: '.prev',
+        nextButton: '.next',
         slideBy: 'page',
         autoplay: false,
         nav: false,

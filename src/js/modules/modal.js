@@ -1,6 +1,6 @@
 export default function modal() {
     
-    const mainImg = document.querySelector('.promo__img img'),
+    const mainImg = document.querySelector('.promo__img'),
           modal = document.querySelector('.modal');
 
     mainImg.addEventListener('click', ()=> {
